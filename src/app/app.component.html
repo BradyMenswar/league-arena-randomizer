@@ -1,0 +1,108 @@
+<div
+  class="top-section"
+  [style]="
+    'background-image: linear-gradient(90deg, rgba(14,14,14,1) 20%, rgba(0,0,0,0) 50%, rgba(14,14,14,1) 80%), url(/assets/Splash/' +
+    champ_id +
+    '_0.jpg)'
+  "
+>
+  <div class="overlay"></div>
+  <div *ngIf="champ_name" class="quick-info">
+    <div class="champ-section">
+      <app-champion [champ_name]="champ_id"></app-champion>
+      <div class="champ-text">
+        <h3>{{ champ_name }}</h3>
+        <p>{{ champ_title }}</p>
+      </div>
+      <div class="spell">
+        <img [src]="'assets/Spells/' + spell_name + '.png'" />
+        <h4 class="spell-name">{{ spell_bind }}</h4>
+      </div>
+    </div>
+    <div class="item-section">
+      <div class="special-item">
+        <app-item
+          [item_id]="starting_id"
+          [item_name]="starting_name"
+        ></app-item>
+        <h4>Starting Item</h4>
+      </div>
+      <div class="special-item">
+        <app-item [item_id]="boots_id" [item_name]="boots_name"></app-item>
+        <h4>Boots</h4>
+      </div>
+      <div class="other-items">
+        <div class="items">
+          <app-item
+            [mythic]="true"
+            [item_id]="mythic_id"
+            [item_name]="mythic_name"
+          ></app-item>
+          <app-item
+            *ngFor="let item of item_build"
+            [item_id]="item.image.full"
+            [item_name]="item.name"
+          ></app-item>
+        </div>
+        <h4>Full Build</h4>
+      </div>
+      <div class="augment-section">
+        <div class="augment">{{ augment_1 }}</div>
+        <div class="augment">{{ augment_2 }}</div>
+        <div class="augment">{{ augment_3 }}</div>
+        <div class="augment">{{ augment_4 }}</div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="champ_name" class="controls">
+    <button
+      (click)="roll()"
+      class="reroll fas fa-arrow-rotate-right control-button"
+    ></button>
+    <button (click)="copyImage()" class="fas fa-copy control-button"></button>
+  </div>
+  <div *ngIf="!champ_name" class="welcome">
+    <div class="welcome-text">
+      <h1>League of Legends Arena Randomizer</h1>
+      <p>
+        This tool will let you roll for a random champion, itemset, and augment
+        path to take for the 2v2v2v2 arena mode.
+      </p>
+    </div>
+    <button (click)="roll()" class="initial-roll">
+      Get Started <span class="fas fa-arrow-rotate-right"></span>
+    </button>
+  </div>
+</div>
+<div  class="rules">
+  <h3>Rules</h3>
+  <ul>
+    <li>You can only buy the items in the shown build from left to right.</li>
+    <li>
+      If you make it to a point where you can afford to sell your starting items
+      or boots, you should replace them with the final two items shown.
+    </li>
+
+    <li>
+      You must max out the shown ability first before maxing any other
+      abilities.
+    </li>
+    <li>
+      The augments shown in the build show L for left, C for center, and R for
+      right to determine which card to pick.
+    </li>
+    <li>
+      You can reroll augments, but you still have to pick the card the build
+      says.
+    </li>
+    <li>
+      Do not select the augment "Mythical". If it is what the build shows to
+      get, pick the augment to the left of it instead.
+    </li>
+    <li>
+      If you do not own the shown champion, reroll until you find one that you
+      own.
+    </li>
+    <li>You may purchase potions if you so choose.</li>
+  </ul>
+</div>

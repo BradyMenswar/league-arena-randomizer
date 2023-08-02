@@ -1,0 +1,17 @@
+
+.champ {
+    width: 100px;
+    height: 100px;
+    background-color: #232425;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: transparent 2px solid;
+}
+
+.champ-img {
+    width: 90%;
+    border-radius: 8px;
+    overflow: hidden;
+}
